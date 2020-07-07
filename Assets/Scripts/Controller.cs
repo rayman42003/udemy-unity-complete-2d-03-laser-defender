@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
         var yInput = Input.GetAxis("Vertical");
         onControlInputted.Invoke(new Vector2(xInput, yInput));
 
-        var shootInput = Input.GetButtonDown("Fire1");
+        var shootInput = Input.GetButton("Fire1");
         if (shootInput) {
             onShootInputted.Invoke();
         }
