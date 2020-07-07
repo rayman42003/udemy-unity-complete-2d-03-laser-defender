@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   moveSpeed: 10
+  boundaryPadding: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
