@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Navigable : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Navigable : MonoBehaviour
 
     [SerializeField]
     private float moveSpeed = 10f;
+
+    private UnityEvent onNavigationComplete = new UnityEvent();
 
     private List<Transform> waypoints {
         get { return path.getWaypoints(); }
@@ -33,7 +36,13 @@ public class Navigable : MonoBehaviour
                 Vector2 newPos = Vector2.MoveTowards(currPos, waypointPos, moveSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
+        } else {
+            onNavigationComplete.Invoke();
         }
+    }
+
+    public void registerOnNavigationComplete(UnityAction action) {
+        onNavigationComplete.AddListener(action);
     }
 
     public void setPath(Path path) {

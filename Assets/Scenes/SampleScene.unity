@@ -606,7 +606,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: 5b0186a3c8ebb074a8c4a842dbcb94cc, type: 2}
+  - {fileID: 11400000, guid: f96f6f72ff0b54240b9d90c70718c6bf, type: 2}
+  - {fileID: 11400000, guid: 5b0186a3c8ebb074a8c4a842dbcb94cc, type: 2}
+  - {fileID: 11400000, guid: f96f6f72ff0b54240b9d90c70718c6bf, type: 2}
   waveIndex: 0
+  waveDelay: 2
 --- !u!4 &1950054539
 Transform:
   m_ObjectHideFlags: 0
@@ -830,11 +834,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2735361947436404093, guid: c6c5751555e7a3741a51169dc0685c3c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6c5751555e7a3741a51169dc0685c3c, type: 3}
