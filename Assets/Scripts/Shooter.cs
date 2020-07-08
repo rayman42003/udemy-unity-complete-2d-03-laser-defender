@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
     private Controller controller;
 
     [SerializeField]
-    private GameObject projectile;
+    private GameObject projectile = null;
 
     [SerializeField]
     private float firingCooldown = 0.1f;

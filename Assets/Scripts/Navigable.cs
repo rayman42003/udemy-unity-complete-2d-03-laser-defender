@@ -7,29 +7,40 @@ public class Navigable : MonoBehaviour
     private Path path;
 
     [SerializeField]
-    private int currWaypointIndex = 0;
+    private int waypointIndex = 0;
 
     [SerializeField]
     private float moveSpeed = 10f;
 
-    [SerializeField]
-    private List<Transform> waypoints;
+    private List<Transform> waypoints {
+        get { return path.getWaypoints(); }
+    }
 
     private void Start() {
-        waypoints = path.getWaypoints();
-        transform.position = waypoints[currWaypointIndex].position;
+        if (path != null) {
+            transform.position = waypoints[waypointIndex].position;
+        }
     }
 
     private void Update() {
-        if (currWaypointIndex < waypoints.Count) {
+        List<Transform> test = waypoints;
+        if (waypointIndex < waypoints.Count) {
             Vector2 currPos = transform.position;
-            Vector2 waypointPos = waypoints[currWaypointIndex].position;
+            Vector2 waypointPos = waypoints[waypointIndex].position;
             if ((waypointPos - currPos).magnitude < Mathf.Epsilon) {
-                currWaypointIndex++;
+                waypointIndex++;
             } else {
                 Vector2 newPos = Vector2.MoveTowards(currPos, waypointPos, moveSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
         }
+    }
+
+    public void setPath(Path path) {
+        this.path = path;
+    }
+
+    public void setMoveSpeed(float moveSpeed) {
+        this.moveSpeed = moveSpeed;
     }
 }

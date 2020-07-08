@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
+    private List<Transform> waypoints = null;
+
     public List<Transform> getWaypoints() {
-        return gameObject.transform
-            .Cast<Transform>()
-            .ToList();
+        if (waypoints == null || waypoints.Count == 0) {
+            waypoints = gameObject.transform
+              .Cast<Transform>()
+              .ToList();
+        }
+        return waypoints;
     }
 }
