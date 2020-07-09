@@ -13,6 +13,9 @@ public class Wave : ScriptableObject
     private GameObject path = null;
 
     [SerializeField]
+    private bool isLooping = false;
+
+    [SerializeField]
     private float moveSpeed = 5f;
 
     [SerializeField]
@@ -28,6 +31,10 @@ public class Wave : ScriptableObject
 
     public Path getPath() {
         return path.GetComponent<Path>();
+    }
+
+    public bool getIsLooping() {
+        return isLooping;
     }
 
     public float getMoveSpeed() {

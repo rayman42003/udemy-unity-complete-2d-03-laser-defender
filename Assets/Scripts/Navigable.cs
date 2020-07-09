@@ -13,6 +13,11 @@ public class Navigable : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 10f;
 
+    [SerializeField]
+    private bool isLooping = false;
+
+    private bool reverseIndex = false;
+
     private UnityEvent onNavigationComplete = new UnityEvent();
 
     private List<Transform> waypoints {
@@ -27,18 +32,44 @@ public class Navigable : MonoBehaviour
 
     private void Update() {
         List<Transform> test = waypoints;
-        if (waypointIndex < waypoints.Count) {
+        if (!pathComplete()) {
             Vector2 currPos = transform.position;
             Vector2 waypointPos = waypoints[waypointIndex].position;
             if ((waypointPos - currPos).magnitude < Mathf.Epsilon) {
-                waypointIndex++;
+                nextWaypoint();
             } else {
                 Vector2 newPos = Vector2.MoveTowards(currPos, waypointPos, moveSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
         } else {
-            onNavigationComplete.Invoke();
+            if (isLooping) {
+                reverseDirection();
+            } else {
+                onNavigationComplete.Invoke();
+            }
         }
+    }
+
+    private void reverseDirection() {
+        reverseIndex = !reverseIndex;
+        if (reverseIndex) {
+            waypointIndex = waypoints.Count - 1;
+        } else {
+            waypointIndex = 0;
+        }
+    }
+
+    private void nextWaypoint() {
+        if (reverseIndex) {
+            waypointIndex--;
+        } else {
+            waypointIndex++;
+        }
+    }
+
+    private bool pathComplete() {
+        return (reverseIndex && waypointIndex < 0) ||
+            (!reverseIndex && waypointIndex >= waypoints.Count);
     }
 
     public void registerOnNavigationComplete(UnityAction action) {
@@ -51,5 +82,9 @@ public class Navigable : MonoBehaviour
 
     public void setMoveSpeed(float moveSpeed) {
         this.moveSpeed = moveSpeed;
+    }
+
+    public void setIsLooping(bool isLooping) {
+        this.isLooping = isLooping;
     }
 }

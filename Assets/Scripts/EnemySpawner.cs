@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
                 Destroy(enemy);
                 enemiesCompletedNavigation++;
             });
+            navigable.setIsLooping(wave.getIsLooping());
             // When enemies can be destroyed, need to keep count of enemies destroyed
             yield return new WaitForSeconds(wave.getSpawnTime());
         }
