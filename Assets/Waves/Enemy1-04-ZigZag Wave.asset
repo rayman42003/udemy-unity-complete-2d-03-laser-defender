@@ -16,5 +16,5 @@ MonoBehaviour:
   numEnemies: 4
   path: {fileID: 5009097925234944785, guid: aceff0903bf310049b8d4e5760e9a16a, type: 3}
   isLooping: 1
-  moveSpeed: 3
+  moveSpeed: 20
   spawnTime: 1.5
