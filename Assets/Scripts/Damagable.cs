@@ -23,11 +23,11 @@ public class Damagable : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void registerOnDamaged(UnityAction action) {
+    public void registerOnDamaged(UnityAction action) {
         onDamaged.AddListener(action);
     }
 
-    private void registerOnKilled(UnityAction action) {
+    public void registerOnKilled(UnityAction action) {
         onKilled.AddListener(action);
     }
 }

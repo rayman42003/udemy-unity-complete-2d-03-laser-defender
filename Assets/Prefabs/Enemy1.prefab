@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPower: 1
-  destroyOnCollision: 1
+  destroyOnCollision: 0
 --- !u!50 &699094892
 Rigidbody2D:
   serializedVersion: 4
