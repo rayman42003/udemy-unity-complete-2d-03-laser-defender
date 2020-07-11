@@ -6,10 +6,15 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private int hitPoints = 1;
 
+    private bool isInvulnerable = false;
+
     private UnityEvent onDamaged = new UnityEvent();
     private UnityEvent onKilled = new UnityEvent();
 
     public void takeDamage(int damage) {
+        if (isInvulnerable) {
+            return;
+        }
         hitPoints -= damage;
         if (hitPoints == 0) {
             kill();
@@ -29,5 +34,9 @@ public class Damagable : MonoBehaviour
 
     public void registerOnKilled(UnityAction action) {
         onKilled.AddListener(action);
+    }
+
+    public void setIsInvulnerable(bool isInvulnerable) {
+        this.isInvulnerable = isInvulnerable;
     }
 }
