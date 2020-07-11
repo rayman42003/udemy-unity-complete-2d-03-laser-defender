@@ -45,9 +45,9 @@ public class Invulnerable : MonoBehaviour
 
     private IEnumerator blink(float blinkSpeed) {
         while (isInvulnerable) {
-            spriteRenderer.enabled = false;
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.25f);
             yield return new WaitForSeconds(blinkSpeed);
-            spriteRenderer.enabled = true;
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
             yield return new WaitForSeconds(blinkSpeed);
         }
     }
