@@ -207,7 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 96359870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c196c4fbbc47b86498e1a5c90f0aaba2, type: 3}
+  m_Script: {fileID: 11500000, guid: 20a1ba7bd7a12c64cab4e6827a0953e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &96359874
@@ -306,7 +306,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 96359870}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -847,10 +847,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 699094892, guid: 370d6acdc4871df488412ff46853c676, type: 3}
-      propertyPath: m_UseFullKinematicContacts
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370d6acdc4871df488412ff46853c676, type: 3}
