@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shooter : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Shooter : MonoBehaviour
     [SerializeField]
     private bool onCooldown = false;
 
+    private UnityEvent onShootProjectile = new UnityEvent();
+
     private void Start() {
         if (controller == null) {
             controller = GetComponent<Controller>();
@@ -26,6 +29,7 @@ public class Shooter : MonoBehaviour
         if (!onCooldown) {
             Vector3 spawnPoint = transform.position + new Vector3(0, 0, 0.5f);
             Instantiate(projectile, spawnPoint, Quaternion.identity);
+            onShootProjectile.Invoke();
             StartCoroutine(startFiringCooldown());
         }
     }
@@ -34,5 +38,9 @@ public class Shooter : MonoBehaviour
         onCooldown = true;
         yield return new WaitForSeconds(firingCooldown);
         onCooldown = false;
+    }
+
+    public void registerOnShootProjectile(UnityAction action) {
+        onShootProjectile.AddListener(action);
     }
 }
