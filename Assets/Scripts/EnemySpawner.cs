@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float waveDelay = 2f;
 
+    [SerializeField]
+    private UnityEvent onWavesComplete;
+
     private int enemiesCompletedNavigation = 0;
     private int enemiesDestroyed = 0;
 
@@ -22,10 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update() {
         int enemiesRemoved = enemiesCompletedNavigation + enemiesDestroyed;
-        if (enemiesRemoved == waves[waveIndex].getNumEnemies()) {
+        bool waveCleared = enemiesRemoved == waves[waveIndex].getNumEnemies();
+        if (waveCleared) {
             if (waveIndex < waves.Count - 1) {
                 waveIndex++;
                 StartCoroutine(spawnWave(waves[waveIndex], waveDelay));
+            } else {
+                onWavesComplete.Invoke();
             }
         }
     }
