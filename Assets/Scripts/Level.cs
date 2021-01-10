@@ -10,7 +10,7 @@ public class Level : MonoBehaviour
     private void Start() {
         if (player) {
             Damagable damagable = player?.GetComponent<Damagable>();
-            damagable?.registerOnKilled((score) => loadGameOver());
+            damagable?.registerOnKilled((shipInfo) => loadGameOver());
         }
     }
 

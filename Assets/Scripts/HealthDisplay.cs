@@ -10,11 +10,11 @@ public class HealthDisplay : MonoBehaviour
 
         PlayerController playerController = FindObjectOfType<PlayerController>();
         Damagable damagable = playerController.gameObject.GetComponent<Damagable>();
-        damagable.registerOnDamaged((hitPoints) => updateHealth(hitPoints));
-        updateHealth(damagable.getHitPoints());
+        damagable.registerOnDamaged((shipInfo) => updateHealth(shipInfo));
+        updateHealth(damagable.getShipInfo());
     }
 
-    private void updateHealth(int hitPoints) {
-        healthText.text = $"HP: {hitPoints}";
+    private void updateHealth(ShipInfo shipInfo) {
+        healthText.text = $"HP: {shipInfo.getHitPoints()} Lives: {shipInfo.getLives()}";
     }
 }

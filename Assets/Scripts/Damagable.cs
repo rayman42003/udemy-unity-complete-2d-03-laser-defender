@@ -3,47 +3,69 @@ using UnityEngine.Events;
 
 public class Damagable : MonoBehaviour
 {
-    [SerializeField]
-    private int hitPoints = 1;
+    private static readonly int DEFAULT_HIT_POINTS = 1;
 
     [SerializeField]
-    private int score = 0;
+    private int maxHitPoints = DEFAULT_HIT_POINTS;
+
+    private int currHitPoints = DEFAULT_HIT_POINTS;
+
+    [SerializeField]
+    private int lives = 1;
+
+    [SerializeField]
+    private int pointValue = 0;
 
     private bool isInvulnerable = false;
 
-    private IntEvent onDamaged = new IntEvent();
-    private IntEvent onKilled = new IntEvent();
+    private ShipEvent onDamaged = new ShipEvent();
+    private ShipEvent onLifeLost = new ShipEvent();
+    private ShipEvent onKilled = new ShipEvent();
+
+    public void Awake() {
+        currHitPoints = maxHitPoints;
+    }
 
     public void Start() {
         GameSession gameSession = FindObjectOfType<GameSession>();
-        registerOnKilled((score) => gameSession.incrementScore(score));
+        registerOnKilled((shipInfo) => gameSession.incrementScore(shipInfo.getPointValue()));
     }
 
     public void takeDamage(int damage) {
         if (isInvulnerable) {
             return;
         }
-        hitPoints -= damage;
-        if (hitPoints <= 0) {
-            kill();
+        currHitPoints -= damage;
+        if (currHitPoints <= 0) {
+            lives--;
+            if (lives <= 0) {
+                kill();
+            } else {
+                currHitPoints = maxHitPoints;
+            }
+            onLifeLost.Invoke(getShipInfo());
         }
-        onDamaged.Invoke(hitPoints);
+        onDamaged.Invoke(getShipInfo());
+    }
+
+    public ShipInfo getShipInfo() {
+        return new ShipInfo(currHitPoints, lives, pointValue);
     }
 
     private void kill() {
-        onKilled.Invoke(score);
+        onKilled.Invoke(getShipInfo());
         Destroy(gameObject);
     }
 
-    public int getHitPoints() {
-        return hitPoints;
-    }
-
-    public void registerOnDamaged(UnityAction<int> action) {
+    public void registerOnDamaged(UnityAction<ShipInfo> action) {
         onDamaged.AddListener(action);
     }
 
-    public void registerOnKilled(UnityAction<int> action) {
+    public void registerOnLifeLost(UnityAction<ShipInfo> action) {
+        onLifeLost.AddListener(action);
+    }
+
+    public void registerOnKilled(UnityAction<ShipInfo> action) {
         onKilled.AddListener(action);
     }
 

@@ -18,7 +18,7 @@ public class Audible : MonoBehaviour
         Shooter shooter = GetComponent<Shooter>();
         shooter?.registerOnShootProjectile(() => playShootSound());
         Damagable damagable = GetComponent<Damagable>();
-        damagable?.registerOnKilled((score) => playDeathSound());
+        damagable?.registerOnLifeLost((shipInfo) => playDeathSound());
     }
 
     private void playShootSound() {

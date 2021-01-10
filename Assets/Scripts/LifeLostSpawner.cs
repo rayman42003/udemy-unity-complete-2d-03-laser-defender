@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class DeathSpawner : MonoBehaviour
+public class LifeLostSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject spawnObject;
 
     private void Start() {
         Damagable damageable = GetComponent<Damagable>();
-        damageable.registerOnKilled((score) => spawn());
+        damageable.registerOnLifeLost((shipInfo) => spawn());
     }
 
     private void spawn() {
