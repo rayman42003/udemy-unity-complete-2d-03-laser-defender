@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 1
+  score: 100
 --- !u!114 &4787989213934647901
 MonoBehaviour:
   m_ObjectHideFlags: 0

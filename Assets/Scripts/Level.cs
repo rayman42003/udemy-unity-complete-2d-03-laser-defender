@@ -10,7 +10,7 @@ public class Level : MonoBehaviour
     private void Start() {
         if (player) {
             Damagable damagable = player?.GetComponent<Damagable>();
-            damagable?.registerOnKilled(() => loadGameOver());
+            damagable?.registerOnKilled((score) => loadGameOver());
         }
     }
 
@@ -19,6 +19,8 @@ public class Level : MonoBehaviour
     }
 
     public void loadGameScene() {
+        GameSession gameSession = FindObjectOfType<GameSession>();
+        gameSession.ResetGameSession();
         SceneManager.LoadScene("02-game");
     }
 

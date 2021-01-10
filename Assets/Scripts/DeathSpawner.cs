@@ -7,7 +7,7 @@ public class DeathSpawner : MonoBehaviour
 
     private void Start() {
         Damagable damageable = GetComponent<Damagable>();
-        damageable.registerOnKilled(() => spawn());
+        damageable.registerOnKilled((score) => spawn());
     }
 
     private void spawn() {

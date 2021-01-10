@@ -6,10 +6,18 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private int hitPoints = 1;
 
+    [SerializeField]
+    private int score = 0;
+
     private bool isInvulnerable = false;
 
     private UnityEvent onDamaged = new UnityEvent();
-    private UnityEvent onKilled = new UnityEvent();
+    private IntEvent onKilled = new IntEvent();
+
+    public void Start() {
+        GameSession gameSession = FindObjectOfType<GameSession>();
+        registerOnKilled((score) => gameSession.AddToScore(score));
+    }
 
     public void takeDamage(int damage) {
         if (isInvulnerable) {
@@ -24,7 +32,7 @@ public class Damagable : MonoBehaviour
     }
 
     private void kill() {
-        onKilled.Invoke();
+        onKilled.Invoke(score);
         Destroy(gameObject);
     }
 
@@ -32,7 +40,7 @@ public class Damagable : MonoBehaviour
         onDamaged.AddListener(action);
     }
 
-    public void registerOnKilled(UnityAction action) {
+    public void registerOnKilled(UnityAction<int> action) {
         onKilled.AddListener(action);
     }
 

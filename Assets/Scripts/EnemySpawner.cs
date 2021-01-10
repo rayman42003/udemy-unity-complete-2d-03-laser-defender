@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             navigable.setIsLooping(wave.getIsLooping());
 
             Damagable damagable = enemy.GetComponent<Damagable>();
-            damagable.registerOnKilled(() => { enemiesDestroyed++; });
+            damagable.registerOnKilled((score) => { enemiesDestroyed++; });
             yield return new WaitForSeconds(wave.getSpawnTime());
         }
     }
