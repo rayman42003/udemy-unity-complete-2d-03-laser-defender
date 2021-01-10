@@ -32,7 +32,8 @@ public class Invulnerable : MonoBehaviour
 
     private IEnumerator startInvulnerability(float duration) {
         damagable.setIsInvulnerable(true);
-        isInvulnerable = true;        yield return new WaitForSeconds(duration);
+        isInvulnerable = true;
+        yield return new WaitForSeconds(duration);
         damagable.setIsInvulnerable(false);
         isInvulnerable = false;
         attacker.setCanAttack(true);
