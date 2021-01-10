@@ -11,7 +11,7 @@ public class Damagable : MonoBehaviour
 
     private bool isInvulnerable = false;
 
-    private UnityEvent onDamaged = new UnityEvent();
+    private IntEvent onDamaged = new IntEvent();
     private IntEvent onKilled = new IntEvent();
 
     public void Start() {
@@ -26,9 +26,8 @@ public class Damagable : MonoBehaviour
         hitPoints -= damage;
         if (hitPoints <= 0) {
             kill();
-        } else {
-            onDamaged.Invoke();
         }
+        onDamaged.Invoke(hitPoints);
     }
 
     private void kill() {
@@ -36,7 +35,11 @@ public class Damagable : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void registerOnDamaged(UnityAction action) {
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void registerOnDamaged(UnityAction<int> action) {
         onDamaged.AddListener(action);
     }
 

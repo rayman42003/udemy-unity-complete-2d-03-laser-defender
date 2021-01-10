@@ -18,7 +18,7 @@ public class Invulnerable : MonoBehaviour
 
     private void Start() {
         damagable = GetComponent<Damagable>();
-        damagable.registerOnDamaged(() => {
+        damagable.registerOnDamaged((hitPoints) => {
             if (!isInvulnerable) {
                 StartCoroutine(startInvulnerability(duration));
                 StartCoroutine(disableAttack());
