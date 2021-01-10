@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class GameSession : MonoBehaviour
 {
     private int score = 0;
+
+    private IntEvent onScoreChange = new IntEvent();
 
     private void Awake() {
         if (FindObjectsOfType(GetType()).Length > 1) {
@@ -14,19 +17,23 @@ public class GameSession : MonoBehaviour
 
     private void initialize() {
         score = 0;
+        onScoreChange.Invoke(score);
     }
 
-    public int GetScore() {
+    public int getScore() {
         return score;
     }
 
-    public void AddToScore(int points) {
+    public void incrementScore(int points) {
         score += points;
-        Debug.Log($"Score: {score}");
+        onScoreChange.Invoke(score);
+    }
+
+    public void registerOnScoreChange(UnityAction<int> action) {
+        onScoreChange.AddListener(action);
     }
 
     public void ResetGameSession() {
         initialize();
-        Debug.Log($"Reset game: {score}");
     }
 }

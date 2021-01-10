@@ -16,7 +16,7 @@ public class Damagable : MonoBehaviour
 
     public void Start() {
         GameSession gameSession = FindObjectOfType<GameSession>();
-        registerOnKilled((score) => gameSession.AddToScore(score));
+        registerOnKilled((score) => gameSession.incrementScore(score));
     }
 
     public void takeDamage(int damage) {
@@ -24,7 +24,7 @@ public class Damagable : MonoBehaviour
             return;
         }
         hitPoints -= damage;
-        if (hitPoints == 0) {
+        if (hitPoints <= 0) {
             kill();
         } else {
             onDamaged.Invoke();
