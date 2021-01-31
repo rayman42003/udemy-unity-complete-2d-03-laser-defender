@@ -515,6 +515,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2130101597, guid: 370d6acdc4871df488412ff46853c676, type: 3}
+      propertyPath: minShootTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130101597, guid: 370d6acdc4871df488412ff46853c676, type: 3}
+      propertyPath: maxShootTime
+      value: 1.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370d6acdc4871df488412ff46853c676, type: 3}
 --- !u!1001 &2595325999614675683
@@ -586,6 +594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2595325997803188841, guid: 7457227f18fd81b449f5f117270b0035,
         type: 3}
+      propertyPath: waves.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2595325997803188841, guid: 7457227f18fd81b449f5f117270b0035,
+        type: 3}
       propertyPath: onWavesComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 420144420762197780}
@@ -603,6 +616,17 @@ PrefabInstance:
         type: 3}
       propertyPath: onWavesComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2595325997803188841, guid: 7457227f18fd81b449f5f117270b0035,
+        type: 3}
+      propertyPath: waves.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 65cbed177b3452a4eb22b9d804d90d2e,
+        type: 2}
+    - target: {fileID: 2595325997803188841, guid: 7457227f18fd81b449f5f117270b0035,
+        type: 3}
+      propertyPath: waveIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7457227f18fd81b449f5f117270b0035, type: 3}
